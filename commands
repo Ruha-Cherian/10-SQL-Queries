@@ -1,0 +1,77 @@
+# 10-SQL-Queries
+The 10 questions for the SQL queries along with the commands.
+Q1. Display the address of the table crime, in lower case where the clearance status is “Not cleared” and limit 20.
+
+select LOWER(address) AS address
+from `bigquery-public-data.austin_crime.crime` 
+where clearance_status like '%Not cleared%'
+LIMIT 20
+
+
+Q2. Display the details of the table where the district is UK and set the limit to 6.
+
+select * from `bigquery-public-data.austin_crime.crime`
+where district like '%UK%' 
+LIMIT 6
+
+ 
+Q3.Display the details of the table where the length of address is greater than 3 with limit as 10.
+
+select * from `bigquery-public-data.austin_crime.crime`
+where LENGTH (ADDRESS) >3
+LIMIT 10
+
+
+
+Q4. Display the description in upper case, the census tract in order of its frequency in ascending order, and the district with the limit set to 10.
+
+select UPPER( description) AS description, census_tract AS frequency, district
+from `bigquery-public-data.austin_crime.crime`
+ORDER BY frequency ASC
+LIMIT 10
+
+
+Q5. Retrieve the zipcode from crime between the years 2013 and 2015 with the limit set to 50.
+
+Select zipcode from `bigquery-public-data.austin_crime.crime` 
+where year between 2013 and 2015
+limit 50
+
+
+Q6. Display the timestamp from crime where the unique key column values ie between 20161730800 and 20165050434.
+
+SELECT timestamp from `bigquery-public-data.austin_crime.crime`
+where unique_key between 20161730800 and 20165050434
+
+
+Q7.  Display the address in lower case, the census tract in order of its frequency, the district from crime where the district is UK, the length of the address is greater than 5 and the frequency is ordered in descending form. Set the limit to 30.
+
+select LOWER(address) AS address, census_tract AS frequency, district
+from `bigquery-public-data.austin_crime.crime`
+where district like '%UK%' and LENGTH (ADDRESS) >5
+ORDER BY frequency DESC
+LIMIT 30
+
+
+
+Q8. Join the two columns ‘station_id’ and ‘status’ of the table bikeshare_stations. Set the limit to 20.
+
+select station1.station_id,station2.status
+from `bigquery-public-data.austin_bikeshare.bikeshare_stations` as station1
+join `bigquery-public-data.austin_bikeshare.bikeshare_stations` as station2
+on ( station1.station_id = station2.station_id)
+limit 20 
+
+
+Q9. Join the three columns ‘country_name’, ‘total_fertility_rate’ and ‘year’ of the table age_specific_fertility_rates
+
+select fertility1.country_name,fertility2.total_fertility_rate, fertility3.year
+from `bigquery-public-data.census_bureau_international.age_specific_fertility_rates`
+ as fertility1
+join `bigquery-public-data.census_bureau_international.age_specific_fertility_rates`
+ as fertility2 
+ on ( fertility1.country_name = fertility2.country_name)
+join `bigquery-public-data.census_bureau_international.age_specific_fertility_rates`
+ as fertility3
+on ( fertility2.total_fertility_rate = fertility3.total_fertility_rate)
+limit 10
