@@ -75,3 +75,13 @@ the limit to 10
   as fertility3
   on ( fertility2.total_fertility_rate = fertility3.total_fertility_rate)
   limit 10
+
+Q.10 Join the two columns of station id belonging to two different tables.
+
+ select
+ station.name,
+ id.bikeid
+ from `bigquery-public-data.austin_bikeshare.bikeshare_stations` station
+ LEFT JOIN `bigquery-public-data.austin_bikeshare.bikeshare_trips` id
+ on (station.station_id = id.start_station_id)
+
