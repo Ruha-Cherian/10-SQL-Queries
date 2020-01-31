@@ -76,7 +76,7 @@ the limit to 10
   on ( fertility2.total_fertility_rate = fertility3.total_fertility_rate)
   limit 10
 
-Q.10 Join the two columns of station id belonging to two different tables.
+Q.10 Join the two columns of 'station id' belonging to two different tables bikeshare_stations and bikeshare_trips.
 
  select
  station.name,
