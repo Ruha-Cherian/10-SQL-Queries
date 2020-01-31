@@ -7,6 +7,30 @@ Q1. Display the address of the table crime, in lower case where the clearance st
  from `bigquery-public-data.austin_crime.crime` 
  where clearance_status like '%Not cleared%'
  LIMIT 20
+ 
+ 
+ Row	address
+1	austin, tx
+2	austin, tx
+3	austin, tx
+4	austin, tx
+5	austin, tx
+6	austin, tx
+7	austin, tx
+8	austin, tx
+9	austin, tx
+10	austin, tx
+11	austin, tx
+12	austin, tx
+13	austin, tx
+14	austin, tx
+15	austin, tx
+16	austin, tx
+17	austin, tx
+18	austin, tx
+19	austin, tx
+20	austin, tx
+
 
 
 Q2. Display the details of the table where the district is UK and set the limit to 6.
@@ -14,34 +38,102 @@ Q2. Display the details of the table where the district is UK and set the limit 
  select * from `bigquery-public-data.austin_crime.crime`
  where district like '%UK%' 
  LIMIT 6
+ 
+
+Row	unique_key	address	census_tract	clearance_date	clearance_status	council_district_code	description	district	latitude	longitude	location	location_description	primary_type	timestamp	x_coordinate	y_coordinate	year	zipcode
+1	20165002898	Austin, TX	null	2016-03-14 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-19 00:00:00 UTC	null	null	2016	null
+2	20165004843	Austin, TX	null	2016-03-31 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-25 00:00:00 UTC	null	null	2016	null
+3	2016250988	Austin, TX	null	2016-09-16 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-25 00:00:00 UTC	null	null	2016	null
+4	20165003839	Austin, TX	null	2016-02-09 00:00:00 UTC	Not cleared	null	AGG RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-01-27 00:00:00 UTC	null	null	2016	null
+5	2016321746	Austin, TX	null	2016-03-22 00:00:00 UTC	Not cleared	null	RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-02-01 00:00:00 UTC	null	null	2016	null
+6	20165010113	Austin, TX	null	2016-04-12 00:00:00 UTC	Not cleared	null	SEXUAL ASSAULT W/ OBJECT	UK	null	null	null	null	Rape	2016-02-25 00:00:00 UTC	null	null	2016	null
 
  
-Q3.Display the details of the table where the length of address is greater than 3 with limit as 10.
+ 
+ Q3.Display the details of the table where the length of address is greater than 3 with limit as 10.
 
  select * from `bigquery-public-data.austin_crime.crime`
  where LENGTH (ADDRESS) >3
  LIMIT 10
-
-
+ 
+ 
+ Row	unique_key	address	census_tract	clearance_date	clearance_status	council_district_code	description	district	latitude	longitude	location	location_description	primary_type	timestamp	x_coordinate	y_coordinate	year	zipcode	
+1	20165002898	Austin, TX	null	2016-03-14 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-19 00:00:00 UTC	null	null	2016	null	
+2	20165004843	Austin, TX	null	2016-03-31 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-25 00:00:00 UTC	null	null	2016	null	
+3	2016250988	Austin, TX	null	2016-09-16 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-25 00:00:00 UTC	null	null	2016	null	
+4	20165003839	Austin, TX	null	2016-02-09 00:00:00 UTC	Not cleared	null	AGG RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-01-27 00:00:00 UTC	null	null	2016	null	
+5	2016321746	Austin, TX	null	2016-03-22 00:00:00 UTC	Not cleared	null	RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-02-01 00:00:00 UTC	null	null	2016	null	
+6	20165010113	Austin, TX	null	2016-04-12 00:00:00 UTC	Not cleared	null	SEXUAL ASSAULT W/ OBJECT	UK	null	null	null	null	Rape	2016-02-25 00:00:00 UTC	null	null	2016	null	
+7	20165009799	Austin, TX	null	2016-03-24 00:00:00 UTC	Cleared by Exception	null	RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-03-07 00:00:00 UTC	null	null	2016	null	
+8	2016701037	Austin, TX	null	2016-05-04 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-03-10 00:00:00 UTC	null	null	2016	null	
+9	2016771324	Austin, TX	null	2016-04-20 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-03-17 00:00:00 UTC	null	null	2016	null	
+10	20165012445	Austin, TX	null	2016-05-20 00:00:00 UTC	Not cleared	null	RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-03-24 00:00:00 UTC	null	null	2016	null	
+ 
+ 
+ 
 Q4. Display the description in upper case, the census tract in order of its frequency in ascending order, and the district with the limit set to 10.
 
  select UPPER( description) AS description, census_tract AS frequency, district
  from `bigquery-public-data.austin_crime.crime`
  ORDER BY frequency ASC
  LIMIT 10
+ 
+ Row	description	frequency	district
+1	RAPE	null                 	UK
+2	RAPE	null	                 UK
+3	RAPE	null	                 UK
+4	AGG RAPE OF A CHILD	null	  UK
+5	RAPE OF A CHILD	null	UK
+6	SEXUAL ASSAULT W/ OBJECT	null	UK
+7	RAPE OF A CHILD	null.     	UK
+8	RAPE	null                 	UK
+9	RAPE	null	                 UK
+10	RAPE OF A CHILD	null	     UK
 
 
-Q5. Retrieve the zipcode from crime between the years 2013 and 2015 with the limit set to 50.
+ 
+ Q5. Retrieve the zipcode from crime between the years 2013 and 2015 with the limit set to 5.
 
  select zipcode from `bigquery-public-data.austin_crime.crime` 
  where year between 2013 and 2015
- limit 50
-
-
-Q6. Display the timestamp from crime where the unique key column values ie between 20161730800 and 20165050434.
+ limit 5
+ 
+ Row	zipcode
+1	     null
+2.    	null
+3.    	null
+4	     null
+5	     null
+ 
+ 
+ 
+ 
+ Q6. Display the timestamp from crime where the unique key column values ie between 20161730800 and 20165050434 with limit as 15.
 
  SELECT timestamp from `bigquery-public-data.austin_crime.crime`
  where unique_key between 20161730800 and 20165050434
+ limit 15
+ 
+ Row	timestamp
+1	2016-01-19 00:00:00 UTC
+2	2016-01-25 00:00:00 UTC
+3	2016-01-27 00:00:00 UTC
+4	2016-02-25 00:00:00 UTC
+5	2016-03-07 00:00:00 UTC
+6	2016-03-24 00:00:00 UTC
+7	2016-04-07 00:00:00 UTC
+8	2016-04-21 00:00:00 UTC
+9	2016-05-31 00:00:00 UTC
+10	2016-06-21 00:00:00 UTC
+11	2016-07-05 00:00:00 UTC
+12	2016-07-15 00:00:00 UTC
+13	2016-07-23 00:00:00 UTC
+14	2016-07-27 00:00:00 UTC
+15	2016-08-12 00:00:00 UTC
+
+
+
+
 
 
 Q7.  Display the address in lower case, the census tract in order of its frequency, the district from crime where the district is UK, the length of the address is greater than 5 and the frequency is ordered in descending form. Set the limit to 30.
@@ -50,7 +142,25 @@ Q7.  Display the address in lower case, the census tract in order of its frequen
  from `bigquery-public-data.austin_crime.crime`
  where district like '%UK%' and LENGTH (ADDRESS) >5
  ORDER BY frequency DESC
- LIMIT 30
+ LIMIT 13
+ 
+ Row	address	frequency	district
+1	5017 w hwy 290austin, tx 78749s(30.233743, -97.822128)	17.5	UK
+2	austin, tx	null	UK
+3	austin, tx	null	UK
+4	austin, tx	null	UK
+5	austin, tx	null	UK
+6	austin, tx	null	UK
+7	austin, tx	null	UK
+8	austin, tx	null	UK
+9	austin, tx	null	UK
+10	austin, tx	null	UK
+11	austin, tx	null	UK
+12	austin, tx	null	UK
+13	austin, tx	null	UK
+ 
+ 
+ 
 
 
 Q8. Join the two columns ‘station_id’ and ‘status’ of the table bikeshare_stations. Set the limit to 20.
@@ -60,8 +170,33 @@ Q8. Join the two columns ‘station_id’ and ‘status’ of the table bikeshar
  join `bigquery-public-data.austin_bikeshare.bikeshare_stations` as station2
  on ( station1.station_id = station2.station_id)
  limit 20 
-
-
+ 
+ 
+ Row	station_id	status
+1	3793	active
+2	3291	active
+3	4058	active
+4	3797	active
+5	3838	active
+6	2544	active
+7	3390	active
+8	2823	active
+9	2711	active
+10	3685	active
+11	4052	active
+12	3621	active
+13	3686	active
+14	3684	active
+15	4055	active
+16	2566	active
+17	4059	active
+18	3635	active
+19	3513	active
+20	4050	active
+ 
+ 
+ 
+  
 Q9. Join the three columns ‘country_name’, ‘total_fertility_rate’ and ‘year’ of the table age_specific_fertility_rates. Set
 the limit to 10
 
@@ -76,6 +211,23 @@ the limit to 10
   on ( fertility2.total_fertility_rate = fertility3.total_fertility_rate)
   limit 10
 
+
+Row	country_name	total_fertility_rate	year
+1	Aruba	1.935	1981
+2	Aruba	1.9737	1982
+3	Aruba	1.9737	2016
+4	Aruba	2.0124	1983
+5	Aruba	2.0511	1984
+6	Aruba	2.0898	1985
+7	Aruba	2.1285	1986
+8	Aruba	2.1672	1987
+9	Aruba	2.2059	1988
+10	Aruba	2.2446	1989
+
+
+
+
+
 Q.10 Join the two columns of 'station id' belonging to two different tables bikeshare_stations and bikeshare_trips.
 
  select
@@ -84,4 +236,27 @@ Q.10 Join the two columns of 'station id' belonging to two different tables bike
  from `bigquery-public-data.austin_bikeshare.bikeshare_stations` station
  LEFT JOIN `bigquery-public-data.austin_bikeshare.bikeshare_trips` id
  on (station.station_id = id.start_station_id)
+ limit 15
+ 
+ Row	name	bikeid
+1	Rio Grande & 28th	680
+2	Rio Grande & 28th	572
+3	Rio Grande & 28th	1475
+4	Rio Grande & 28th	25
+5	Rio Grande & 28th	287
+6	Rio Grande & 28th	924
+7	Rio Grande & 28th	12740
+8	Rio Grande & 28th	254
+9	Rio Grande & 28th	326
+10	Rio Grande & 28th	875
+11	Rio Grande & 28th	1574
+12	Rio Grande & 28th	503
+13	Rio Grande & 28th	1441
+14	Rio Grande & 28th	62
+15	Rio Grande & 28th	735
+ 
+ 
+ 
+ 
+ 
 
